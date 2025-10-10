@@ -1,73 +1,42 @@
-# React + TypeScript + Vite
+TaskWave — Productivity Dashboard App
+⚡ Overview
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+TaskWave is a modern productivity web app built with React, TypeScript, and Tailwind CSS.
+It helps users organize their projects, manage daily tasks, and track progress — all in a sleek, minimal dashboard UI.
 
-Currently, two official plugins are available:
+🎯 Key Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🗂️ Create, edit, and delete tasks
 
-## React Compiler
+📁 Organize by project or category
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+🕒 Set deadlines and priorities
 
-## Expanding the ESLint configuration
+✅ Mark tasks as Todo, In Progress, or Done
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+💾 Persistent storage with LocalStorage (for now)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+🎨 Clean, responsive dashboard UI using Tailwind CSS
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+🧠 Type-safe state management with React + TypeScript
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+🧱 Tech Stack
+Category Tools
+Frontend React.js (with TypeScript)
+Styling Tailwind CSS / shadcn
+State Management useState / useReducer (later Redux Toolkit optional)
+Local Storage Browser LocalStorage / IndexedDB
+Icons Lucide React / HeroIcons
+Build Tool Vite or Create React App (template TypeScript)
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Planned Enhancements (Next Stages)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+🌐 Backend (Node.js + Express + MongoDB)
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+👤 User Authentication (JWT + Cookies)
+
+📊 Progress analytics (charts & stats)
+
+☁️ Cloud sync instead of local storage
+
+💬 Real-time collaboration (long-term goal)
