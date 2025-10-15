@@ -6,7 +6,7 @@ const Navbar: React.FC = () => {
       <div className="max-w-screen-xl px-6 flex justify-between items-center text-secondary">
         <h3 className="text-2xl font-bold">Task Wave </h3>
         <nav>
-          <ul className=" flex space-x-6 ">
+          <ul className=" flex space-x-9 ">
             <li>
               <a href="#">Signup</a>
             </li>
