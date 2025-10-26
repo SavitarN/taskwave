@@ -12,7 +12,7 @@ const SigninPage: React.FC<SigninPageProps> = () => {
     console.log(username, email, password);
   };
   return (
-    <div className="flex flex-col justify-center items-center gap-5 p-10 md:p-7 xl:p-5">
+    <div className="flex flex-col justify-center items-center gap-5 p-10 md:p-7 xl:p-5 min-h-screen">
       <h3 className="text-primary text-2xl font-bold">Signin Here</h3>
       <form
         onSubmit={handleSubmit}
