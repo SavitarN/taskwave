@@ -1,24 +1,36 @@
 import React, { useState } from "react";
 import { signin } from "../utils/signin";
-interface SigninPageProps {}
+import type { User } from "../types/user";
 
-const SigninPage: React.FC<SigninPageProps> = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const SigninPage: React.FC = () => {
+  const [userData, setUserData] = useState<User>({
+    username: "",
+    email: "",
+    password: "",
+  });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    setUserData((prevData) => {
+      return {
+        ...prevData,
+        [name]: value,
+      };
+    });
+
+    return {};
+  };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const data = {
-      username,
-      email,
-      password,
-    };
-    setUsername("");
-    setEmail("");
-    setPassword("");
-    if (signin(data)) {
+
+    if (signin(userData)) {
       alert("User Registered Successfully ");
+      setUserData({
+        username: "",
+        email: "",
+        password: "",
+      });
     } else {
       alert("Error in registering User");
     }
@@ -32,23 +44,26 @@ const SigninPage: React.FC<SigninPageProps> = () => {
       >
         <input
           type="text"
+          name="username"
           placeholder="Enter Your Username"
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={handleChange}
           className="  px-10 py-3 rounded-md border-2 border-blue-950"
           value={username}
         />
         <input
           type="email"
+          name="email"
           placeholder="Enter Your Mail"
           className="  px-10 py-3 rounded-md border-2 border-blue-950"
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={handleChange}
           value={email}
         />
         <input
           type="password"
+          name="password"
           placeholder="Enter Your password"
           className="  px-10 py-3 rounded-md border-2 border-blue-950"
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={handleChange}
           value={password}
         />
         <button

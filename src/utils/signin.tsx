@@ -1,11 +1,7 @@
-type user = {
-  username: string;
-  email: string;
-  password: any;
-};
-type signin = (userData: user) => boolean;
+import type { User } from "../types/user";
+type signin = (userData: User) => boolean;
 
-export const signin: signin = (userData: user) => {
+export const signin: signin = (userData: User) => {
   try {
     const data = JSON.stringify(userData);
     localStorage.setItem("userdata", data);
