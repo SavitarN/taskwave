@@ -17,8 +17,6 @@ const SigninPage: React.FC = () => {
         [name]: value,
       };
     });
-
-    return {};
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -48,7 +46,7 @@ const SigninPage: React.FC = () => {
           placeholder="Enter Your Username"
           onChange={handleChange}
           className="  px-10 py-3 rounded-md border-2 border-blue-950"
-          value={username}
+          value={userData.username}
         />
         <input
           type="email"
@@ -56,7 +54,7 @@ const SigninPage: React.FC = () => {
           placeholder="Enter Your Mail"
           className="  px-10 py-3 rounded-md border-2 border-blue-950"
           onChange={handleChange}
-          value={email}
+          value={userData.email}
         />
         <input
           type="password"
@@ -64,7 +62,7 @@ const SigninPage: React.FC = () => {
           placeholder="Enter Your password"
           className="  px-10 py-3 rounded-md border-2 border-blue-950"
           onChange={handleChange}
-          value={password}
+          value={userData.password}
         />
         <button
           className="cursor-pointer px-10 border-primary border-2 w-fit m-auto rounded-md p-2 hover:animate-in "
