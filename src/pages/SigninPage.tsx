@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import { signin } from "../utils/signin";
 import type { User } from "../types/user";
-
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState, AppDispatch } from "../app/store";
+import { setUser } from "../features/user/userSlice";
 const SigninPage: React.FC = () => {
   const [userData, setUserData] = useState<User>({
     username: "",
     email: "",
     password: "",
   });
+  const dispatch = useDispatch<AppDispatch>();
+  const user = useSelector((state: RootState) => state.user);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
@@ -29,6 +33,7 @@ const SigninPage: React.FC = () => {
         email: "",
         password: "",
       });
+      dispatch(setUser(userData));
     } else {
       alert("Error in registering User");
     }
@@ -71,6 +76,7 @@ const SigninPage: React.FC = () => {
           Submit
         </button>
       </form>
+      <p>{user && user.username}</p>
     </div>
   );
 };
