@@ -17,9 +17,9 @@ const Dashboard: React.FC<DashboardProps> = () => {
           Create Your Task{" "}
         </button>
       </div>
-      {/* <div>
+      <div>
         <img src={img} />
-      </div> */}
+      </div>
     </div>
   );
 };
