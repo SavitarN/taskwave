@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import img from "../../src/assets/task.png";
 interface DashboardProps {}
 
-const Dashboard: React.FC<DashboardProps> = (props) => {
+const Dashboard: React.FC<DashboardProps> = () => {
   const [modal, showModal] = useState(false);
   const handleOpen = () => {
     showModal((prev) => !prev);
@@ -17,9 +17,9 @@ const Dashboard: React.FC<DashboardProps> = (props) => {
           Create Your Task{" "}
         </button>
       </div>
-      <div>
+      {/* <div>
         <img src={img} />
-      </div>
+      </div> */}
     </div>
   );
 };
