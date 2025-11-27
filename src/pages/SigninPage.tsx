@@ -12,9 +12,9 @@ const SigninPage: React.FC = () => {
   });
   const dispatch = useDispatch<AppDispatch>();
   const user = useSelector((state: RootState) => state.user);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-
     setUserData((prevData) => {
       return {
         ...prevData,
