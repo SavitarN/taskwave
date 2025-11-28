@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import img from "../../src/assets/task.png";
+import TaskModal from "../components/modal/TaskModal";
 interface DashboardProps {}
 
 const Dashboard: React.FC<DashboardProps> = () => {
@@ -20,6 +21,7 @@ const Dashboard: React.FC<DashboardProps> = () => {
       <div>
         <img src={img} />
       </div>
+      {modal && <TaskModal />}
     </div>
   );
 };
