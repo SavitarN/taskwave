@@ -9,7 +9,7 @@ const Dashboard: React.FC<DashboardProps> = () => {
     showModal((prev) => !prev);
   };
   return (
-    <div className="min-h-screen flex  justify-between items-center">
+    <div className="min-h-screen flex  justify-between items-center ">
       <div className="">
         <button
           className="px-10 py-8  border rounded-xl hover:cursor-pointer hover:animate-bounce"
@@ -21,7 +21,7 @@ const Dashboard: React.FC<DashboardProps> = () => {
       <div>
         <img src={img} />
       </div>
-      {modal && <TaskModal />}
+      {modal && <TaskModal handleOpen={handleOpen} />}
     </div>
   );
 };
