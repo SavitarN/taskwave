@@ -14,7 +14,9 @@ const TaskModal: React.FC<TaskModalProps> = ({ handleOpen }) => {
     status: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLFormElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLFormElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setTask((prevValue) => {
       return {
@@ -23,27 +25,25 @@ const TaskModal: React.FC<TaskModalProps> = ({ handleOpen }) => {
       };
     });
   };
-  console.log(task);
 
   const handleModal = () => {
     handleOpen();
   };
   return (
-    <div className=" fixed inset-0 z-50 flex justify-center items-center bg-black/40 backdrop-blur-sm ">
-      <div>
-        <button className="absolute left-200 top-0" onClick={handleModal}>
-          Cross
-        </button>
+    <div className=" fixed inset-0 z-70 flex justify-center items-center bg-black/40 backdrop-blur-sm ">
+      <div className="absolute left-200 top-5  border-2 cursor-pointer">
+        <button onClick={handleModal}>X</button>
       </div>
-      <div className="flex flex-col gap-2 p-5 md:p-7 xl:p-10 items-center bg-gray-200 ">
+      <div className=" flex flex-col items-center justify-center bg-gray-200 rounded-2xl ">
         <h2>Create Your Task</h2>
-        <form className="flex flex-col gap-5 p-3 md:p-7 xl:p-12 w-full border border-red-400">
+        <form className="flex flex-col gap-1 p-2 md:p-7 xl:p-12 w-full ">
           <input
             type="text"
             placeholder="Task Title"
             className=" w-full border border-green-300  px-7 py-5"
             onChange={handleChange}
             name="title"
+            value={task.title}
           />
 
           <textarea
@@ -53,8 +53,11 @@ const TaskModal: React.FC<TaskModalProps> = ({ handleOpen }) => {
             className=" w-full border border-green-300  px-7 py-5"
             onChange={handleChange}
             name="description"
+            value={task.title}
           />
-          <div className="w-full flex justify-around">
+
+          <fieldset className="w-full flex justify-around">
+            <legend> Priority</legend>
             <div>
               <input
                 type="radio"
@@ -63,6 +66,7 @@ const TaskModal: React.FC<TaskModalProps> = ({ handleOpen }) => {
                 value="Medium"
                 className="text-2xl text-red-600"
                 onChange={handleChange}
+                checked={task.priority === "Medium"}
               />
               <label htmlFor="medium">Medium</label>
             </div>
@@ -74,6 +78,7 @@ const TaskModal: React.FC<TaskModalProps> = ({ handleOpen }) => {
                 name="priority"
                 value="High"
                 onChange={handleChange}
+                checked={task.priority === "High"}
               />
               <label htmlFor="high">High</label>
             </div>
@@ -85,10 +90,11 @@ const TaskModal: React.FC<TaskModalProps> = ({ handleOpen }) => {
                 name="priority"
                 value="Low"
                 onChange={handleChange}
+                checked={task.priority === "priority"}
               />
               <label htmlFor="low">Low</label>
             </div>
-          </div>
+          </fieldset>
 
           <input
             type="date"
@@ -97,7 +103,8 @@ const TaskModal: React.FC<TaskModalProps> = ({ handleOpen }) => {
             className=" w-full border border-green-300  px-7 py-5"
           />
 
-          <div className="w-full flex justify-around">
+          <fieldset className="w-full flex justify-around">
+            <legend>Status</legend>
             <div>
               <input
                 type="radio"
@@ -117,7 +124,7 @@ const TaskModal: React.FC<TaskModalProps> = ({ handleOpen }) => {
                 value="In Progress"
                 onChange={handleChange}
               />
-              <label htmlFor="In Progress">In Progress</label>
+              <label htmlFor="in-progress">In Progress</label>
             </div>
 
             <div>
@@ -130,7 +137,7 @@ const TaskModal: React.FC<TaskModalProps> = ({ handleOpen }) => {
               />
               <label htmlFor="todo"> Todo</label>
             </div>
-          </div>
+          </fieldset>
           <button className=" border-2 p-3">Add Task </button>
         </form>
       </div>
