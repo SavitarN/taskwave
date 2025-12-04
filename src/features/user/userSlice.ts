@@ -3,7 +3,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 type UserState = {
   username: string;
-  email?: string;
+  email: string;
 };
 const initialState: UserState = {
   username: "",
@@ -16,8 +16,8 @@ const userSlice = createSlice({
 
   reducers: {
     setUser: (state, action: PayloadAction<UserState>) => {
-      (state.username = action.payload.username),
-        (state.email = action.payload.email);
+      state.username = action.payload.username;
+      state.email = action.payload.email;
     },
     clearUser: (state) => {
       state.username = "";

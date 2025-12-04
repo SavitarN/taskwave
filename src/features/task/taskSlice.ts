@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { Task } from "../types/task";
+import type { Task } from "../../types/task";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: Task = {
