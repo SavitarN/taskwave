@@ -1,21 +1,24 @@
 import React, { useState } from "react";
 import type { Task } from "../../types/task";
-
+import { useDispatch, useSelector } from "react-redux";
+import type { AppDispatch } from "../../app/store";
+import { addTask } from "../../features/task/taskSlice";
 interface TaskModalProps {
   handleOpen: () => void;
 }
 
 const TaskModal: React.FC<TaskModalProps> = ({ handleOpen }) => {
-  const [task, setTask] = useState({
+  const [task, setTask] = useState<Task>({
     title: "",
     description: "",
-    priority: "",
+    priority: "Medium",
     deadline: "",
-    status: "",
+    status: "Todo",
   });
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLFormElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     setTask((prevValue) => {
@@ -29,6 +32,12 @@ const TaskModal: React.FC<TaskModalProps> = ({ handleOpen }) => {
   const handleModal = () => {
     handleOpen();
   };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    dispatch(addTask(task));
+    handleOpen();
+  };
   return (
     <div className=" fixed inset-0 z-70 flex justify-center items-center bg-black/40 backdrop-blur-sm ">
       <div className="absolute left-200 top-5  border-2 cursor-pointer">
@@ -36,7 +45,10 @@ const TaskModal: React.FC<TaskModalProps> = ({ handleOpen }) => {
       </div>
       <div className=" flex flex-col items-center justify-center bg-gray-200 rounded-2xl ">
         <h2>Create Your Task</h2>
-        <form className="flex flex-col gap-1 p-2 md:p-7 xl:p-12 w-full ">
+        <form
+          className="flex flex-col gap-1 p-2 md:p-7 xl:p-12 w-full "
+          onSubmit={handleSubmit}
+        >
           <input
             type="text"
             placeholder="Task Title"
@@ -53,7 +65,7 @@ const TaskModal: React.FC<TaskModalProps> = ({ handleOpen }) => {
             className=" w-full border border-green-300  px-7 py-5"
             onChange={handleChange}
             name="description"
-            value={task.title}
+            value={task.description}
           />
 
           <fieldset className="w-full flex justify-around">
@@ -121,10 +133,10 @@ const TaskModal: React.FC<TaskModalProps> = ({ handleOpen }) => {
                 type="radio"
                 id="in-progress"
                 name="status"
-                value="In Progress"
+                value="In-progress"
                 onChange={handleChange}
               />
-              <label htmlFor="in-progress">In Progress</label>
+              <label htmlFor="In-progress">In Progress</label>
             </div>
 
             <div>
