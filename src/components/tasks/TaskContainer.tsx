@@ -12,7 +12,7 @@ const TaskContainer: React.FC<TaskContainerProps> = (props) => {
   const taskDone = task.filter((task) => task.status === "Done");
   const taskTodo = task.filter((task) => task.status === "Todo");
   return (
-    <div className="min-h-screen flex flex-row justify-evenly">
+    <div className="min-h-screen grid grid-cols-3 ">
       <TaskList task={taskTodo} status="Todo" />
       <TaskList task={taskInProgress} status="Inprogress" />
       <TaskList task={taskDone} status="Done" />
