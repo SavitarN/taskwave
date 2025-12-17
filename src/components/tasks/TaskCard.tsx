@@ -20,8 +20,8 @@ const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
           )}
         ></div>
         <div className="w-full flex justify-center p-2  ">
-          <button className="p-3  cursor-pointer">Edit </button>
-          <button className="p-3  cursor-pointer">Delete</button>
+          <button className="p-3 hover:underline  cursor-pointer">Edit </button>
+          <button className="p-3 hover:underline cursor-pointer">Delete</button>
         </div>
       </div>
     </div>
