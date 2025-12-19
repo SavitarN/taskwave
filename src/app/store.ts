@@ -8,9 +8,14 @@ export const store = configureStore({
   },
 });
 
+let prevTaskState = store.getState().task;
 store.subscribe(() => {
-  const state = store.getState();
-  localStorage.setItem("taskData", JSON.stringify(state.task));
+  const currentTaskState = store.getState().task;
+  console.log("current TAsk state", currentTaskState);
+  if (prevTaskState !== currentTaskState) {
+    localStorage.setItem("taskData", JSON.stringify(currentTaskState));
+    prevTaskState = currentTaskState;
+  }
 });
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
