@@ -5,6 +5,7 @@ import taskReducer from "../features/task/taskSlice";
 const savedTask = localStorage.getItem("taskData");
 
 const preloadedState = { task: savedTask ? JSON.parse(savedTask) : undefined };
+console.log("preloadedState", preloadedState);
 export const store = configureStore({
   reducer: {
     user: userReducer,
@@ -16,7 +17,7 @@ export const store = configureStore({
 let prevTaskState = store.getState().task;
 store.subscribe(() => {
   const currentTaskState = store.getState().task;
-  console.log("current TAsk state", currentTaskState);
+
   if (prevTaskState !== currentTaskState) {
     localStorage.setItem("taskData", JSON.stringify(currentTaskState));
     prevTaskState = currentTaskState;

@@ -9,6 +9,7 @@ import LoginPage from "../pages/LoginPage";
 
 import DashoboardLayout from "../components/layout/DashboardLayout";
 import Dashboard from "../pages/Dashboard";
+import TaskModal from "../components/modal/TaskModal";
 const AppRoute: React.FC = () => {
   return (
     <Routes>
@@ -23,6 +24,7 @@ const AppRoute: React.FC = () => {
       </Route>
       <Route element={<DashoboardLayout />}>
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/taskmodal" element={<TaskModal />} />
       </Route>
     </Routes>
   );

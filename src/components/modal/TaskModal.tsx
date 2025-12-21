@@ -9,6 +9,7 @@ interface TaskModalProps {
 
 const TaskModal: React.FC<TaskModalProps> = ({ handleOpen }) => {
   const [task, setTask] = useState<Task>({
+    id: crypto.randomUUID(),
     title: "",
     description: "",
     priority: "Medium",
