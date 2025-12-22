@@ -3,6 +3,7 @@ import type { Task } from "../../types/task";
 import { useDispatch } from "react-redux";
 import type { AppDispatch } from "../../app/store";
 import { addTask } from "../../features/task/taskSlice";
+import { updateTask } from "../../features/task/taskSlice";
 interface TaskModalProps {
   handleOpen?: () => void;
   editTask?: Task;
@@ -20,7 +21,7 @@ const TaskModal: React.FC<TaskModalProps> = ({ handleOpen, editTask }) => {
     }
   );
   const dispatch = useDispatch<AppDispatch>();
-  console.log("edit task prop her ", editTask);
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -33,19 +34,18 @@ const TaskModal: React.FC<TaskModalProps> = ({ handleOpen, editTask }) => {
     });
   };
 
-  const handleModal = () => {
-    handleOpen();
-  };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    dispatch(addTask(task));
-    handleOpen();
+    if (editTask) {
+      dispatch(updateTask(task));
+    } else {
+      dispatch(addTask(task));
+    }
   };
   return (
     <div className=" fixed inset-0 z-70 flex justify-center items-center bg-black/40 backdrop-blur-sm ">
       <div className="absolute left-200 top-5  border-2 cursor-pointer">
-        <button onClick={handleModal}>X</button>
+        {/* <button onClick={handleModal}>X</button> */}
       </div>
       <div className=" flex flex-col items-center justify-center bg-gray-200 rounded-2xl ">
         <h2>Create Your Task</h2>
@@ -158,7 +158,9 @@ const TaskModal: React.FC<TaskModalProps> = ({ handleOpen, editTask }) => {
               <label htmlFor="todo"> Todo</label>
             </div>
           </fieldset>
-          <button className=" border-2 p-3">Add Task </button>
+          <button className=" border-2 p-3">
+            {editTask ? "Edit" : "Add"}{" "}
+          </button>
         </form>
       </div>
     </div>
