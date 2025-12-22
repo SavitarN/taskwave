@@ -1,24 +1,26 @@
 import React, { useState } from "react";
 import type { Task } from "../../types/task";
-import { useDispatch, useSelector } from "react-redux";
-import type { AppDispatch, RootState } from "../../app/store";
+import { useDispatch } from "react-redux";
+import type { AppDispatch } from "../../app/store";
 import { addTask } from "../../features/task/taskSlice";
 interface TaskModalProps {
-  handleOpen: () => void;
+  handleOpen?: () => void;
+  editTask?: Task;
 }
 
-const TaskModal: React.FC<TaskModalProps> = ({ handleOpen }) => {
-  const [task, setTask] = useState<Task>({
-    id: crypto.randomUUID(),
-    title: "",
-    description: "",
-    priority: "Medium",
-    deadline: "",
-    status: "Todo",
-  });
+const TaskModal: React.FC<TaskModalProps> = ({ handleOpen, editTask }) => {
+  const [task, setTask] = useState<Task>(
+    editTask || {
+      id: crypto.randomUUID(),
+      title: "",
+      description: "",
+      priority: "Medium",
+      deadline: "",
+      status: "Todo",
+    }
+  );
   const dispatch = useDispatch<AppDispatch>();
-  const tasks = useSelector((state: RootState) => state.task);
-  console.log("tasksssss", tasks);
+  console.log("edit task prop her ", editTask);
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -36,7 +38,6 @@ const TaskModal: React.FC<TaskModalProps> = ({ handleOpen }) => {
   };
 
   const handleSubmit = (e: React.FormEvent) => {
-    console.log(task);
     e.preventDefault();
     dispatch(addTask(task));
     handleOpen();
@@ -116,6 +117,7 @@ const TaskModal: React.FC<TaskModalProps> = ({ handleOpen }) => {
             name="deadline"
             onChange={handleChange}
             className=" w-full border border-green-300  px-7 py-5"
+            value={task.deadline}
           />
 
           <fieldset className="w-full flex justify-around">
@@ -126,6 +128,7 @@ const TaskModal: React.FC<TaskModalProps> = ({ handleOpen }) => {
                 id="done"
                 name="status"
                 value="Done"
+                checked={task.status === "Done"}
                 onChange={handleChange}
               />
               <label htmlFor="done">Done</label>
@@ -137,6 +140,7 @@ const TaskModal: React.FC<TaskModalProps> = ({ handleOpen }) => {
                 id="in-progress"
                 name="status"
                 value="In-progress"
+                checked={task.status === "In-progress"}
                 onChange={handleChange}
               />
               <label htmlFor="In-progress">In Progress</label>
@@ -149,6 +153,7 @@ const TaskModal: React.FC<TaskModalProps> = ({ handleOpen }) => {
                 name="status"
                 value="Todo"
                 onChange={handleChange}
+                checked={task.status == "Todo"}
               />
               <label htmlFor="todo"> Todo</label>
             </div>

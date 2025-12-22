@@ -12,7 +12,6 @@ const Dashboard: React.FC<DashboardProps> = () => {
 
   const allTask = useSelector((state: RootState) => state.task);
 
-  console.log("allTask", allTask.length);
   const handleOpen = () => {
     showModal((prev) => !prev);
   };

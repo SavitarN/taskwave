@@ -11,7 +11,7 @@ const TaskList: React.FC<TaskListProps> = ({ task, status }) => {
     <div className="flex flex-col items-center p-3 gap-2">
       <h2>{status}</h2>
       {task.map((task) => (
-        <TaskCard task={task} />
+        <TaskCard task={task} key={task.id} />
       ))}
     </div>
   );
