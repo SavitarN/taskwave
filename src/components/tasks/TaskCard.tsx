@@ -19,7 +19,6 @@ const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
     setEditTaskModal(true);
   };
 
-  console.log("all task here ", allTask);
   return (
     <div className="bg-gray-200 rounded shadow border-2 border-red-400 w-full p-3 ">
       {editTaskModal && editTask && <TaskModal editTask={editTask} />}
